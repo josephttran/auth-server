@@ -5,11 +5,10 @@ import cors from '@koa/cors';
 import helmet from 'koa-helmet';
 import jwt from 'koa-jwt';
 import logger from 'koa-logger';
-import Router from 'koa-router';
 require('dotenv').config();
+import routerRoutes from '../routes/routes';
 
 const app: Koa = new Koa();
-const router: Router = new Router();
 const log = console.log;
 
 app.env = process.env.ENVIRONMENT;
@@ -36,29 +35,7 @@ app.on('error', (err, ctx) => {
     log(chalk.green(err.body));
 })
 
-router.get('/', async ctx => {
-    ctx.body = 'Hello Koa.js TypeScript';
-});
-
-router.get('/hello', async ctx => {
-    ctx.body = 'Hello ';
-});
-
-router.get('/hello/:id', async ctx => {
-    const { id } = ctx.params;
-    ctx.body = 'Hello ' + id;
-});
-
-router.post('/user', async ctx => {
-    try {
-        ctx.body = ctx.request.body;
-    } catch(err) {
-        log(err);
-        throw err;
-    }  
-})
-
-app.use(router.routes());
+app.use(routerRoutes);
 
 app.listen(process.env.PORT);
 log(`listening on port ${process.env.PORT || 3000}`);
