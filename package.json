@@ -56,7 +56,7 @@
       "node"
     ],
     "testEnvironment": "node",
-    "testRegex": "/tests/.*\\.(test|spec)\\.ts",
+    "testRegex": "/tests/[^\\/]*\\.(test|spec)\\.ts",
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     }
