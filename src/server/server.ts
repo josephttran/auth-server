@@ -11,7 +11,8 @@ import routerRoutes from '../routes/routes';
 const app: Koa = new Koa();
 const log = console.log;
 
-app.env = process.env.ENVIRONMENT;
+process.env.NODE_ENV = process.env.ENVIRONMENT;
+app.env = process.env.NODE_ENV;
 app.use(bodyparser());
 app.use(cors());
 app.use(logger());
