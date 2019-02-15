@@ -14,7 +14,6 @@ export interface IDbConfig {
 
 export interface IDatabase {
   createConnectionPool: () => Promise<mysql.Pool>;
-  closeConnectionPool: () => Promise<void>;
 }
 
 export interface IModel {

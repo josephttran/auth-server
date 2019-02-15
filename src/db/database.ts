@@ -5,7 +5,6 @@ import { IDbConfig, IDatabase } from 'src/interfaces/interfaces';
 
 class Database implements IDatabase {
   config: IDbConfig;
-  connectionPool: mysql.Pool;
 
   constructor() {
     this.config = config;
@@ -13,23 +12,16 @@ class Database implements IDatabase {
   
   async createConnectionPool(): Promise<mysql.Pool>{
     try {
-      const pool = await mysql.createPool(this.config);
+      const pool: mysql.Pool = await mysql.createPool(this.config);
       
-      this.connectionPool = pool;
       console.log('Success create pool');
-      return this.connectionPool;
+      return pool;
     } catch(err) {
       console.log('Failed create pool', err);
     }
   }
   
-  async closeConnectionPool(): Promise<void> {
-    try {
-      await this.connectionPool.end;
-    } catch(err) {
-      console.log('Close pool error:', err);
-    }    
-  }
+  // Using Pool.query() automatically close Pool
 }
 
 export default Database;
