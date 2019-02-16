@@ -56,6 +56,9 @@
       "json",
       "node"
     ],
+    "setupFilesAfterEnv": [
+      "./tests/setup/iconv.cesu8.ts"
+    ],
     "testEnvironment": "node",
     "testRegex": "/tests/[^\\/]*\\.(test|spec)\\.ts",
     "transform": {
