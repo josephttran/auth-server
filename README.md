@@ -1,3 +1,7 @@
 # AuthServer
 
-Node.js Koa.js MySQL
++ Node.js
++ Koa.js
++ MySQL
++ TypeScript
++ Json Web Token
