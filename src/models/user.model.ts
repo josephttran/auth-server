@@ -18,7 +18,7 @@ class UserModel implements IModel {
         firstName VARCHAR(40) NOT NULL,
         lastName VARCHAR(40) NOT NULL,
         email VARCHAR(90) NOT NULL UNIQUE KEY,
-        password VARCHAR(50) NOT NULL
+        password VARCHAR(64) NOT NULL
     )`;
 
     try {
@@ -40,6 +40,7 @@ class UserModel implements IModel {
 
       return result[0];
     } catch(err) {
+      console.log(err.message);
       throw new Error(`user with email ${user.email} already exist`);
     }
   }
