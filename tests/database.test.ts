@@ -1,19 +1,17 @@
 import mysql from 'mysql2/promise';
-import { IDbConfig } from '../src/interfaces/interfaces';
 
+import { IDbConfig } from '../src/interfaces/interfaces';
 import Database from '../src/db/database';
 
 describe('Database', () => {
-  const database = new Database();
-
   test('Should be an instance of Database', () => {
-    expect(database).toBeInstanceOf(Database);
+    expect(Database).toBeDefined();
   });
   
   test('Should set database config', async () => {
-    const config: IDbConfig = database.config;
+    const config: IDbConfig = Database.config;
     
-    expect(Object.keys(database)).toEqual(expect.arrayContaining(['config']));
+    expect(Object.keys(Database)).toEqual(expect.arrayContaining(['config']));
     expect(config).toBeDefined();
     expect(Object.keys(config)).toEqual(expect.arrayContaining(['host', 'user', 'password', 'database']));
     expect(config).toHaveProperty('charset', 'utf8mb4');
@@ -21,11 +19,10 @@ describe('Database', () => {
 });
 
 describe('Pool', () => {
-  const database = new Database();
   let pool: mysql.Pool;
   
   async function createNewPool() {
-    pool = await database.createConnectionPool();
+    pool = await Database.createConnectionPool();
   }
   
   beforeAll(() => {

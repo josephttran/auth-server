@@ -1,13 +1,13 @@
 import mysql from 'mysql2/promise';
 
 import config from './config';
-import { IDbConfig, IDatabase } from 'src/interfaces/interfaces';
+import { IDbConfig, IDatabase } from '../interfaces/interfaces';
 
 class Database implements IDatabase {
   config: IDbConfig;
 
-  constructor() {
-    this.config = config;
+  constructor(cfg: IDbConfig) {
+    this.config = cfg;
   }
   
   async createConnectionPool(): Promise<mysql.Pool>{
@@ -21,7 +21,7 @@ class Database implements IDatabase {
     }
   }
   
-  // Using Pool.query() automatically close Pool
+  /* Using Pool.query() automatically close Pool */
 }
 
-export default Database;
+export default new Database(config);

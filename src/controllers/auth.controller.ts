@@ -4,8 +4,7 @@ import Database from '../db/database';
 import UserModel from '../models/user.model';
 import { jwtService, bcryptService } from '../services/auth.service';
 
-const db = new Database();
-const userModel = new UserModel(db);
+const userModel = new UserModel(Database);
 
 class AuthController {
   static async login(ctx: Koa.Context, next: Function): Promise<void> {
@@ -14,8 +13,8 @@ class AuthController {
 
       if (user && pwMatch) {     
         const token = await jwtService.createToken(user);
-        ctx.status = 302;
-        ctx.redirect('/protected-route');
+        
+        ctx.status = 200;
         ctx.body = {
           email: user.email,
           token: token
@@ -51,8 +50,8 @@ class AuthController {
       if(okPacket.affectedRows === 1) {
         const token = await jwtService.createToken(user);
         
-        ctx.status = 302;
-        ctx.redirect('/protected-route');
+        ctx.status = 201;
+
         ctx.body = {
           user: user.email,
           token: token

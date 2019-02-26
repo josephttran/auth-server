@@ -74,7 +74,7 @@ describe('routes test', () => {
 
       expect(response.type).toBe('application/json');
       expect(response.body.token).toBeDefined();
-      expect(response.status).toBe(302);
+      expect(response.status).toBe(200);
       token = response.body.token;
     });
 
@@ -108,7 +108,7 @@ describe('routes test', () => {
 
       expect(response.type).toBe('application/json');
       expect(response.body.token).toBeDefined();
-      expect(response.status).toBe(302);
+      expect(response.status).toBe(201);
     });
   });
 });

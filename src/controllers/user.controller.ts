@@ -4,8 +4,7 @@ import { IUser } from '../interfaces/interfaces'
 import Database from '../db/database';
 import UserModel from '../models/user.model';
 
-const db = new Database();
-const userModel = new UserModel(db);
+const userModel = new UserModel(Database);
 
 class UserController {
   static async createUser(ctx: Koa.Context) {

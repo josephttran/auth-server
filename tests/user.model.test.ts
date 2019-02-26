@@ -5,8 +5,7 @@ import Database from '../src/db/database';
 import UserModel from '../src/models/user.model'
 
 describe('UserModel', () => {
-  const database = new Database();
-  const userModel = new UserModel(database);
+  const userModel = new UserModel(Database);
 
   test('database of user model is defined', () => {
     expect(userModel.db).toBeDefined();
@@ -18,10 +17,8 @@ describe('UserModel', () => {
 });
 
 describe('User model methods', () => {
-  const database = new Database();
-  const userModel = new UserModel(database);
+  const userModel = new UserModel(Database);
   
-
   it('should create user table', async () => {
       await userModel.createUserTable();
   });

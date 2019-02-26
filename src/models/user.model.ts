@@ -1,14 +1,12 @@
 import mysql, { OkPacket, FieldPacket } from 'mysql2/promise';
 
-import { IModel, IUser } from '../interfaces/interfaces';
-import Database from '../db/database';
-
+import { IDatabase, IModel, IUser } from '../interfaces/interfaces';
 
 class UserModel implements IModel {
   table: string = 'users';
-  db: Database;
+  db: IDatabase;
 
-  constructor(db: Database) {
+  constructor(db: IDatabase) {
     this.db = db;
   }
 
@@ -72,7 +70,7 @@ class UserModel implements IModel {
 
       return user;
     } catch(err) {
-      throw new Error(err.message); // return Promise.reject(new Error(err.message));
+      throw new Error(err.message);
     }
   }
 }
